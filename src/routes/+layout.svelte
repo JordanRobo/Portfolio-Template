@@ -26,15 +26,22 @@
         <InfoDrawer />
     {:else if $drawerStore.id === 'contact'}
         <ContactDrawer />
+        
     {:else}
         <!-- Fallback content -->
     {/if}
 </Drawer>
 <AppShell>
-	<slot />
-	<svelte:fragment slot="footer">     
-        <button on:click={() => openDrawer('about')}>About</button>
-        <button on:click={() => openDrawer('info')}>Info</button>
-        <button on:click={() => openDrawer('contact')}>Contact</button>					
+    <div class="flex flex-col h-full">
+        <slot />
+    </div>
+	<svelte:fragment slot="footer"> 
+    <div class="h-12">
+        <TabGroup>
+            <TabAnchor on:click={() => openDrawer('about')}>About</TabAnchor>
+            <TabAnchor on:click={() => openDrawer('info')}>Info</TabAnchor>
+            <TabAnchor on:click={() => openDrawer('contact')}>Contact</TabAnchor>
+        </TabGroup>    
+    </div>					
     </svelte:fragment>
 </AppShell>
