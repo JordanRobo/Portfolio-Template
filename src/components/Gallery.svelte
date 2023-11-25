@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-  import { crossfade } from 'svelte/transition';
-  import { quintOut } from 'svelte/easing';
+  import { fly } from 'svelte/transition';
 
   let images = [
     'src/lib/images/Berner-sunset.jpg',
@@ -10,11 +9,6 @@
   ];
   let currentImageIndex = 0;
 
-  const [send, receive] = crossfade({
-    duration: 1500,
-    easing: quintOut
-  });
-
   const updateImage = () => {
     currentImageIndex = (currentImageIndex + 1) % images.length;
   };
@@ -22,7 +16,7 @@
   let interval: any;
 
   onMount(() => {
-    interval = setInterval(updateImage, 5000); // Change 5000 to your desired interval in milliseconds
+    interval = setInterval(updateImage, 5000);
   });
 
   onDestroy(() => {
@@ -32,6 +26,11 @@
 
 {#each images as image, index (image)}
   {#if index === currentImageIndex}
-    <div class="absolute top-0 left-0 w-full h-full bg-fixed bg-cover brightness-50" in:receive={{ key: image }} out:send={{ key: image }} style="background-image: url({image})"></div>
+    <div 
+      class="absolute top-0 left-0 w-full h-full bg-fixed bg-cover brightness-50" 
+      in:fly={{ x: -200, duration: 1000 }} 
+      out:fly={{ x: 200, duration: 1000, delay: 1000 }} 
+      style="background-image: url({image})"
+    ></div>
   {/if}
 {/each}
