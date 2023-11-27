@@ -1,3 +1,4 @@
+<script lang="ts" type="module"></script>
 <svg width="1024" height="1024" viewBox="0 0 512 512" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg">
     <g id="text1-4" style="font-size:37.3333px;line-height:0.8;font-family:Unmatched;-inkscape-font-specification:'Unmatched, Normal';text-align:center;letter-spacing:0px;white-space:pre;fill:none;fill-opacity:1;stroke:#95eaec;stroke-width:0.995986;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke" transform="matrix(2.6332838,0,0,3.1897357,-689.37558,-307.39298)" aria-label="PEACH
     KREAMER">

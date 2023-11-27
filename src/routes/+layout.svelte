@@ -3,8 +3,9 @@
     import { AppShell, TabGroup, Tab, TabAnchor, initializeStores, Drawer, getDrawerStore } from '@skeletonlabs/skeleton';
     import type { DrawerSettings, DrawerStore } from '@skeletonlabs/skeleton';
     import AboutDrawer from "../components/AboutDrawer.svelte";
-	import InfoDrawer from "../components/InfoDrawer.svelte";
+	import GalleryDrawer from "../components/GalleryDrawer.svelte";
 	import ContactDrawer from "../components/ContactDrawer.svelte";
+    import ServicesDrawer from "../components/ServicesDrawer.svelte";
 
     initializeStores();
     const drawerStore = getDrawerStore();
@@ -22,10 +23,12 @@
 <Drawer>
     {#if $drawerStore.id === 'about'}
         <AboutDrawer />
-    {:else if $drawerStore.id === 'info'}
-        <InfoDrawer />
+    {:else if $drawerStore.id === 'gallery'}
+        <GalleryDrawer />
     {:else if $drawerStore.id === 'contact'}
         <ContactDrawer />
+    {:else if $drawerStore.id === 'services'}
+        <ServicesDrawer />
         
     {:else}
         <!-- Fallback content -->
@@ -36,11 +39,12 @@
         <slot />
     </div>
 	<svelte:fragment slot="footer"> 
-    <div class="h-12">
+    <div class="h-12 px-6">
         <TabGroup>
-            <TabAnchor on:click={() => openDrawer('about')}>About</TabAnchor>
-            <TabAnchor on:click={() => openDrawer('info')}>Info</TabAnchor>
-            <TabAnchor on:click={() => openDrawer('contact')}>Contact</TabAnchor>
+            <TabAnchor on:click={() => openDrawer('about')}><h2 style="font-family: 'Bebas Neue', sans-serif;" class="h3 hover:text-primary-500">About</h2></TabAnchor>
+            <TabAnchor on:click={() => openDrawer('gallery')}><h2 style="font-family: 'Bebas Neue', sans-serif;" class="h3 hover:text-primary-500">Gallery</h2></TabAnchor>
+            <TabAnchor on:click={() => openDrawer('services')}><h2 style="font-family: 'Bebas Neue', sans-serif;" class="h3 hover:text-primary-500">Services</h2></TabAnchor>
+            <TabAnchor on:click={() => openDrawer('contact')}><h2 style="font-family: 'Bebas Neue', sans-serif;" class="h3 hover:text-primary-500">Contact</h2></TabAnchor>
         </TabGroup>    
     </div>					
     </svelte:fragment>

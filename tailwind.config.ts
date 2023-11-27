@@ -18,6 +18,11 @@ const config = {
 		)
 	],
 	theme: {
+		fontFamily: {
+			'sans': ['Inconsolata', 'system-ui'],
+			'serif': ['Bebas Neue', 'Georgia' ],
+		  },
+
 		extend: {},
 	},
 	plugins: [

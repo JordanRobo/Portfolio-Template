@@ -1,22 +1,19 @@
-<script lang="ts">
+<script lang="ts" type="module">
   import { onMount, onDestroy } from 'svelte';
   import { fly } from 'svelte/transition';
+  import { quintInOut } from 'svelte/easing';
+  import { imageUrls } from '../store';
 
-  let images = [
-    'src/lib/images/Berner-sunset.jpg',
-    'src/lib/images/bernese-mountain-dog-puppy.jpg',
-    'src/lib/images/smiling-bernese-mountain-dog.jpg'
-  ];
   let currentImageIndex = 0;
+  let interval: any;
+  $: currentImageUrl = $imageUrls[currentImageIndex];
 
   const updateImage = () => {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
+    currentImageIndex = (currentImageIndex + 1) % $imageUrls.length;
   };
 
-  let interval: any;
-
   onMount(() => {
-    interval = setInterval(updateImage, 5000);
+    interval = setInterval(updateImage, 6000);
   });
 
   onDestroy(() => {
@@ -24,12 +21,12 @@
   });
 </script>
 
-{#each images as image, index (image)}
+{#each $imageUrls as image, index (image)}
   {#if index === currentImageIndex}
     <div 
-      class="absolute top-0 left-0 w-full h-full bg-fixed bg-cover brightness-50" 
-      in:fly={{ x: -200, duration: 1000 }} 
-      out:fly={{ x: 200, duration: 1000, delay: 1000 }} 
+      class="absolute top-0 left-0 w-full h-full bg-fixed bg-cover brightness-50 grayscale"
+      in:fly={{ x: '-100vw', duration: 2000, easing: quintInOut }} 
+      out:fly={{ x: '100vw', duration: 2000, easing: quintInOut }} 
       style="background-image: url({image})"
     ></div>
   {/if}
